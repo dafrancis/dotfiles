@@ -10,6 +10,9 @@ function delete_bundle() {
     bundle=$1
     echo "Removing $bundle..."
     rm -rf ~/.vim/bundle/$bundle
+    cd ~/.dotfiles
+    git add -A
+    git commit -m "Uninstall $url bundle."
 }
 
 function main() {

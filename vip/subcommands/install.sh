@@ -1,6 +1,7 @@
 #!/bin/bash
 
-BUNDLE_DIR=~/.vim/bundle
+REPO_PATH=~/.dotfiles
+BUNDLE_DIR=vim/bundle
 bundle=$1
 name=$2
 
@@ -20,7 +21,10 @@ function github_url() {
 function download() {
     echo "Downloading..."
     url=`github_url $bundle`
+    cd $REPO_PATH
     git submodule add $url $BUNDLE_DIR/$name
+    git add -A
+    git commit -m "Install $url bundle as a submodule."
 }
 
 function check_and_download() {
