@@ -5,7 +5,7 @@ bundle=$1
 BUNDLE_DIR=~/.vim/bundle
 
 function get_readme() {
-    less $BUNDLE_DIR/$bundle/README*
+    less $BUNDLE_DIR/$bundle/README* || less $BUNDLE_DIR/$bundle/readme*
 }
 
 function main() {
