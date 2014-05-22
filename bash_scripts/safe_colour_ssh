@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Detect the server address using three methods.
+# Address contains an @
+ip=`echo -- $@ | cut -d"@" -f2`
+match=`cat ~/.server_colours | grep -- "$ip" | wc -l`
+if [ $match -ne 1 ]; then
+	# Try first argument to SSH
+	ip=`echo $@ | cut -d" " -f1`
+	match=`cat ~/.server_colours | grep -- "$ip" | wc -l`
+fi
+
+if [ $match -ne 1 ]; then
+	# Try last argument to SSH
+	num=${#}
+	ip=${!num}
+	match=`cat ~/.server_colours | grep -- "$ip" | wc -l`
+fi
+# Anything else we can't match.
+
+if [ $match -ge 1 ]; then
+    # Switch terminal profile.
+    colour=`cat ~/.server_colours | grep -- "$ip" | cut -f2 -d"," | head -1`
+
+    echo -e "\033]50;SetProfile=$colour\a"
+else
+    echo "(NOTE:) This server does not have a colour associated with it. You can set one in ~/.server_colours"
+fi
+
+/usr/bin/ssh $@
+if [ $match -ge 1 ]; then
+    # Return profile back to whatever was set when we started.
+    echo -e "\033]50;SetProfile=$ITERM_PROFILE\a"
+fi

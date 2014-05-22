@@ -79,18 +79,17 @@ export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/
 # automatically coloured.
 alias ssh="~/bash_scripts/safe_colour_ssh $1"
 
-alias complexity="python ~/pycomplex/pygenie.py"
+alias complexity="python ~/.dotfiles/py_scripts/complexity/pygenie.py"
 alias serve="python -m SimpleHTTPServer"
 alias json="python -mjson.tool"
-alias chrome="open /Applications/Google\ Chrome.app --args --disable-web-security"
 alias tmux="TERM=screen-256color-bce tmux"
 alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias ssh-ft="ssh -i ~/.ssh/df_ft_rsa -l dafyddfrancis"
-alias vdiff="/Users/dafrancis/bash_scripts/diffwrap.sh"
+alias vdiff="~/.dotfiles/bash_scripts/diffwrap.sh"
 alias up="svn up"
-alias sdiff="svn diff --diff-cmd=/Users/dafrancis/bash_scripts/diffwrap.sh"
-alias chdiff="svn diff --diff-cmd=/Users/dafrancis/bash_scripts/diffwrap.sh --changelist"
-alias fancylog="~/bash_scripts/fancylog.sh"
+alias sdiff="svn diff --diff-cmd=~/.dotfiles/bash_scripts/diffwrap.sh"
+alias chdiff="svn diff --diff-cmd=~/.dotfiles/bash_scripts/diffwrap.sh --changelist"
+alias fancylog="~/.dotfiles/bash_scripts/fancylog.sh"
 export SVN_EDITOR=vim
 
 
