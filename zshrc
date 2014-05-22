@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git zsh-syntax-hilighting sublime svn python fabric jira history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,3 +73,91 @@ export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Special SSH alias which changes the Terminal profile,
+# so that terminals on production servers can be
+# automatically coloured.
+alias ssh="~/bash_scripts/safe_colour_ssh $1"
+
+alias complexity="python ~/pycomplex/pygenie.py"
+alias serve="python -m SimpleHTTPServer"
+alias json="python -mjson.tool"
+alias chrome="open /Applications/Google\ Chrome.app --args --disable-web-security"
+alias tmux="TERM=screen-256color-bce tmux"
+alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+alias ssh-ft="ssh -i ~/.ssh/df_ft_rsa -l dafyddfrancis"
+alias vdiff="/Users/dafrancis/bash_scripts/diffwrap.sh"
+alias up="svn up"
+alias sdiff="svn diff --diff-cmd=/Users/dafrancis/bash_scripts/diffwrap.sh"
+alias chdiff="svn diff --diff-cmd=/Users/dafrancis/bash_scripts/diffwrap.sh --changelist"
+alias fancylog="~/bash_scripts/fancylog.sh"
+export SVN_EDITOR=vim
+
+
+function reload() {
+    source ~/.zshrc
+    clear
+}
+
+function check_changes() {
+    if [ $# -eq 0 ]
+    then
+        echo "Missing changelist. Choose one of the following:"
+        svn st -q | grep "^---" | sed -e "s/--- Changelist '//g" -e "s/'://g"
+    else
+        chdiff $1
+    fi
+}
+
+function commit_changes {
+    if [ $# -eq 0 ]; then
+        echo "Missing changelist. Choose one of the following:"
+        svn st -q | grep "^---" | sed -e "s/--- Changelist '//g" -e "s/'://g"
+    else
+        if [ $# -eq 1 ]; then
+            echo -n "Enter your commit message: "
+            read message
+        else
+            message = $2
+        fi
+        if [ $message ]; then
+            svn commit --cl $1 -m "$1 : $message"
+            echo "Changes for ticket $1 committed!"
+        else
+            echo "No message provided. Exiting"
+        fi
+    fi
+}
+
+function svn_remove_cl() {
+    svn revert --cl $1 -R .
+    svn status |\
+    sed -n "/--- Changelist '$1':/,/--- Changelist.*/p" |\
+    grep -v '^--- Changelist' |\
+    xargs svn changelist --remove
+}
+
+function project_check() {
+    cd /Users/dafrancis/bawe
+    ls | grep "DEV" | sort > checkouts.tmp
+    cat *.sublime-project | grep path | awk -F'"' '{print $4}' | sed 's/.*\///g' | grep "DEV" | sort > projects.tmp
+    diff projects.tmp checkouts.tmp | awk '{print $2}' | grep "DEV" | sort
+    rm -rf *.tmp
+}
+
+function default_changelist() {
+svn st -q | xargs | sed -e 's/Performing status on external item.*//g' -e 's/ \([MAD]\)/\
+\1/g'
+}
+
+function make_inits() {
+    find . -type d | grep -v svn | awk '{ print "touch " $0 "/__init__.py" }' | sh
+}
+
+zstyle ':completion:*:manuals'    separate-sections true
+zstyle ':completion:*:manuals.*'  insert-sections   true
+zstyle ':completion:*:man:*'      menu yes select
+
+
+PATH="/usr/local/bin:$HOME/bin:$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
