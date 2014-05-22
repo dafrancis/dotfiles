@@ -16,3 +16,6 @@
 [submodule "vim/bundle/esc2"]
 	path = vim/bundle/esc2
 	url = https://github.com/taku-o/vim-esc2-noh.git
+[submodule "vim/bundle/powerline"]
+	path = vim/bundle/powerline
+	url = https://github.com/Lokaltog/vim-powerline.git
