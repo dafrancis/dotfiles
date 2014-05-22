@@ -19,3 +19,6 @@
 [submodule "vim/bundle/powerline"]
 	path = vim/bundle/powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
+[submodule "vim/bundle/svn_gutter"]
+	path = vim/bundle/svn_gutter
+	url = https://github.com/vim-scripts/vim-svngutter.git
