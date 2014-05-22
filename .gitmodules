@@ -22,3 +22,6 @@
 [submodule "vim/bundle/svn_gutter"]
 	path = vim/bundle/svn_gutter
 	url = https://github.com/vim-scripts/vim-svngutter.git
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
