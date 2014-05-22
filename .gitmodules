@@ -13,3 +13,6 @@
 [submodule "vim/bundle/complexity"]
 	path = vim/bundle/complexity
 	url = https://github.com/garybernhardt/pycomplexity.git
+[submodule "vim/bundle/esc2"]
+	path = vim/bundle/esc2
+	url = https://github.com/taku-o/vim-esc2-noh.git
