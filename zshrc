@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/afal/.rvm/bin"
+export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/afal/.rvm/bin:/Applications/Xcode.app/Contents/Developer/usr/subversion-1.6/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -77,19 +77,18 @@ export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/
 # Special SSH alias which changes the Terminal profile,
 # so that terminals on production servers can be
 # automatically coloured.
-alias ssh="~/bash_scripts/safe_colour_ssh $1"
+alias ssh="$HOME/.dotfiles/bash_scripts/safe_colour_ssh $1"
 
 alias complexity="python ~/.dotfiles/py_scripts/complexity/pygenie.py"
 alias serve="python -m SimpleHTTPServer"
 alias json="python -mjson.tool"
 alias tmux="TERM=screen-256color-bce tmux"
 alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-alias ssh-ft="ssh -i ~/.ssh/df_ft_rsa -l dafyddfrancis"
-alias vdiff="~/.dotfiles/bash_scripts/diffwrap.sh"
+alias ssh-ft="ssh -i $HOME/.ssh/df_ft_rsa -l dafyddfrancis"
 alias up="svn up"
-alias sdiff="svn diff --diff-cmd=~/.dotfiles/bash_scripts/diffwrap.sh"
-alias chdiff="svn diff --diff-cmd=~/.dotfiles/bash_scripts/diffwrap.sh --changelist"
-alias fancylog="~/.dotfiles/bash_scripts/fancylog.sh"
+alias sdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh"
+alias chdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh --changelist"
+alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
 export SVN_EDITOR=vim
 
 
