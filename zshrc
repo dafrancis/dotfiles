@@ -79,7 +79,6 @@ export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/
 # automatically coloured.
 alias ssh="$HOME/.dotfiles/bash_scripts/safe_colour_ssh $1"
 
-alias complexity="python ~/.dotfiles/py_scripts/complexity/pygenie.py"
 alias serve="python -m SimpleHTTPServer"
 alias json="python -mjson.tool"
 alias tmux="TERM=screen-256color-bce tmux"
