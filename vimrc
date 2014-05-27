@@ -56,7 +56,9 @@ set number  " show line numbers
 set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=80
+if version >= 703
+    set colorcolumn=80
+endif
 highlight ColorColumn ctermbg=233
 
 vmap Q gq
@@ -254,3 +256,31 @@ set autoread
 
 " force quit
 map <silent> <leader>k :qa!<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RUNNING TESTS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F6> :w<CR>:call RunTest()<CR>
+
+function! IsTest(filename)
+    " Check if file is a test
+    return match(a:filename, "notlive") > 0 && match(a:filename, "/test_") > 0
+endfunction
+
+function! SetThisRunner(filename)
+    " Run the current test file
+    let test_path=split(a:filename, "/notlive/")
+    let g:grb_runner_file='cd $BACSHOME/notlive;source setupEnvironment.sh;time python ' . test_path[1]
+endfunction
+
+function! RunTest()
+    " Run a test
+    let filename=expand('%:p')
+    if IsTest(filename)
+        call SetThisRunner(filename)
+    end
+    if exists("g:grb_runner_file")
+        exec ":!clear;" . g:grb_runner_file
+    end
+endfunction
+
