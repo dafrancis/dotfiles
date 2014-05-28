@@ -40,3 +40,6 @@
 [submodule "vim/bundle/sneak"]
 	path = vim/bundle/sneak
 	url = https://github.com/justinmk/vim-sneak.git
+[submodule "vim/bundle/auto-pairs"]
+	path = vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git

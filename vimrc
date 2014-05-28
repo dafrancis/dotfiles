@@ -14,7 +14,7 @@ set bs=2     " make backspace behave like normal again
 
 let mapleader = ","
 " ex mode commands made easy
-nnoremap ; :
+" nnoremap ; :
 
 noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
