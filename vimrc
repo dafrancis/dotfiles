@@ -260,12 +260,3 @@ set autoread
 " force quit
 map <silent> <leader>k :qa!<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F6> :w<CR>:call RunTest()<CR>
-
-let g:test_runner_base_dir="/home/accountis/BacsHub/trunk/notlive/"
-let g:test_runner_command="source setupEnvironment.sh;time python"
-let g:test_runner_matches=["notlive", "/test_"]
-
