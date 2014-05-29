@@ -34,7 +34,7 @@ endfunction
 function! s:SetThisRunner(filename)
     " Run the current test file
     let test_path = split(a:filename, g:test_runner_base_dir)
-    let g:grb_runner_file = test_path[-1]
+    let g:test_runner_file = test_path[-1]
 endfunction
 
 function! s:RunCommandIfExists()
