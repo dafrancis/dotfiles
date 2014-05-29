@@ -1,4 +1,4 @@
-function! IsTest(filename)
+function! s:IsTest(filename)
     " Check if file is a test
     if !exists("g:test_runner_matches")
         let test_list = []
@@ -13,25 +13,28 @@ function! IsTest(filename)
     return 1
 endfunction
 
-function! SetThisRunner(filename)
+function! s:SetThisRunner(filename)
     " Run the current test file
     let test_path=split(a:filename, g:test_runner_base_dir)
     let g:grb_runner_file='cd ' . g:test_runner_base_dir . ';' . g:test_runner_command . ' ' . test_path[-1]
 endfunction
 
-function! RunTest()
+function! s:RunTest()
     " Run a test
     if !(exists("g:test_runner_base_dir") && exists("g:test_runner_command"))
-        echo "Error: base dir or command not set!"
+        echoerr "Error: base dir or command not set!"
         return
     endif
     let filename=expand('%:p')
-    if IsTest(filename)
-        call SetThisRunner(filename)
+    if s:IsTest(filename)
+        call s:SetThisRunner(filename)
     endif
     if exists("g:grb_runner_file")
         exec ":!clear;" . g:grb_runner_file
     else
-        echo "Error: there's no test to run!"
+        echoerr "Error: there's no test to run!"
     endif
 endfunction
+
+command! RunTest :call <SID>RunTest()
+
