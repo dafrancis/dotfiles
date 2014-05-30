@@ -1,8 +1,4 @@
-let s:settings = [
-    'g:test_opener_swap_script',
-    'g:test_opener_swap_test',
-    'g:test_opener_file_prefix'
-]
+let s:settings = ['g:test_opener_swap_script', 'g:test_opener_swap_test', 'g:test_opener_file_prefix']
 
 function! s:IsTest(filename)
     " Check if file is a test

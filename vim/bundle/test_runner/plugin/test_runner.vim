@@ -1,7 +1,4 @@
-let s:settings = [
-    'g:test_runner_base_dir',
-    'g:test_runner_command'
-]
+let s:settings = ['g:test_runner_base_dir', 'g:test_runner_command']
 
 function! s:SettingsExist()
     " Check if the settings for this plugin are set
@@ -49,7 +46,7 @@ function! s:RunCommandIfExists()
     else
         echoerr 'Error: no test to run!'
     endif
-endif
+endfunction
 
 function! s:RunTest()
     " Run a test
