@@ -30,12 +30,12 @@ endfunction
 
 function s:SwitchScript(file)
     " Subsitutes file
-    let regex = '\\([^/]\\+\\)$'
+    let regex = '\([^/]\+\)$'
     let prefix = g:test_opener_file_prefix
     if s:IsTest(a:file)
-        return substitute(a:file, prefix . regex, '\\1', '')
+        return substitute(a:file, prefix . regex, '\1', '')
     else
-        return substitute(a:file, regex, prefix . '\\1', '')
+        return substitute(a:file, regex, prefix . '\1', '')
     endif
 endfunction
 
