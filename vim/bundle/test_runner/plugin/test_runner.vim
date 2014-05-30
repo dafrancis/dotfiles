@@ -14,9 +14,9 @@ endfunction
 function! s:GetTestList()
     " Get the test list
     if !exists('g:test_runner_matches')
-        return test_list = []
+        return []
     else
-        return test_list = g:test_runner_matches
+        return g:test_runner_matches
     endif
 endfunction
 

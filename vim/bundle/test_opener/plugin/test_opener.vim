@@ -42,7 +42,7 @@ endfunction
 function! s:SwapDirectory(file)
     " Swaps directory
     let file1 = g:test_opener_swap_test
-    let file2 = g:test_opener_swap_file
+    let file2 = g:test_opener_swap_script
     if s:IsTest(a:file)
         return substitute(a:file, file1, file2, '')
     else
