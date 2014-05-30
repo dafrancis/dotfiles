@@ -19,10 +19,6 @@ let mapleader = ","
 " ex mode commands made easy
 " nnoremap ; :
 
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
-
 noremap <C-Z> :update<CR>
 vnoremap <C-Z> <C-C>:update<CR>
 inoremap <C-Z> <C-O>:update<CR>
@@ -67,7 +63,6 @@ highlight ColorColumn ctermbg=233
 vmap Q gq
 nmap Q gqap
 
-set history=700
 set undolevels=700
 
 set tabstop=4
@@ -122,14 +117,14 @@ noremap! [" [""]<esc>hi
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup vimrcEx
-  " Clear all autocmds in the group
-  autocmd!
-  autocmd FileType text setlocal textwidth=78
-  " Jump to last cursor position unless it's invalid or in an event handler
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+" Clear all autocmds in the group
+autocmd!
+autocmd FileType text setlocal textwidth=78
+" Jump to last cursor position unless it's invalid or in an event handler
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
 
 "for ruby, autoindent with two spaces, always expand tabs
 autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
@@ -191,17 +186,8 @@ map <leader>n :call RenameFile()<cr>
 " Python IDE Setup
 " ============================================================================
 
-
-" Settings for vim-powerline
-" cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
-set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
-
-" Settings for ctrlp
-" cd ~/.vim/bundle
-" git clone https://github.com/kien/ctrlp.vim.git
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
@@ -254,8 +240,6 @@ function! SuperTab()
     endif
 endfunction
 imap <Tab> <C-R>=SuperTab()<CR>
-
-set autoread
 
 " force quit
 map <silent> <leader>k :qa!<cr>

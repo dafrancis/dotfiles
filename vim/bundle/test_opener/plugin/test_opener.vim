@@ -1,36 +1,63 @@
+let s:settings = [
+    'g:test_opener_swap_script',
+    'g:test_opener_swap_test',
+    'g:test_opener_file_prefix'
+]
+
 function! s:IsTest(filename)
     " Check if file is a test
-    if !(exists("g:test_opener_swap_test") && exists("g:test_opener_file_prefix"))
-        echoerr "There is no swap test or file prefix set"
-    else
-        return match(a:filename, g:test_opener_swap_test) && match(a:filename, '/' . g:test_opener_file_prefix)
+    if s:SettingsExist()
+        let matches_test_dir = match(a:filename, g:test_opener_swap_test)
+        let matches_prefix = match(a:filename, '/' . g:test_opener_file_prefix)
+        return matches_test_dir && matches_prefix
     endif
+endfunction
+
+function! s:SettingsExist()
+    " Check if the settings for this plugin are set
+    for setting in s:settings
+        if !exists(setting)
+            echoerr setting . ' is not set'
+            return 0
+        endif
+    endfor
+    return 1
 endfunction
 
 function! s:CreateRelated()
     " Open/Create related spec/file
-    if !(exists("g:test_opener_swap_test") && exists("g:test_opener_file_prefix") && exists("g:test_opener_swap_script"))
-        echoerr "No settings found"
-        return
+    if s:SettingsExist()
+        let related = s:GetRelatedFile(expand('%:p'))
+        call s:Open(related)
     endif
-    let related = s:GetRelatedFile(expand('%:p'))
-    call s:Open(related)
+endfunction
+
+function s:SwitchScript(file)
+    " Subsitutes file
+    let regex = '\\([^/]\\+\\)$'
+    let prefix = g:test_opener_file_prefix
+    if s:IsTest(a:file)
+        return subsitute(a:file, prefix . regex, '\\1', '')
+    else
+        return subsitute(a:file, regex, prefix . '\\1', '')
+    endif
+endfunction
+
+function! s:SwapDirectory(file)
+    " Swaps directory
+    let file1 = g:test_opener_swap_test
+    let file2 = g:test_opener_swap_file
+    if s:IsTest(a:file)
+        return subsitute(a:file, file1, file2, '')
+    else
+        return subsitute(a:file, file2, file1, '')
+    endif
 endfunction
 
 function! s:GetRelatedFile(file)
     " Return the related filename
-    if s:IsTest(a:file)
-        let file_regex = g:test_opener_file_prefix . "\\([^/]\\+\\)$"
-        let file_replace_str = "\\1"
-        let folder_1 = g:test_opener_swap_test
-        let folder_2 = g:test_opener_swap_script
-    else
-        let file_regex = "\\([^/]\\+\\)$"
-        let file_replace_str = g:test_opener_file_prefix . "\\1"
-        let folder_1 = g:test_opener_swap_script
-        let folder_2 = g:test_opener_swap_test
-    endif
-    return substitute(substitute(a:file, file_regex, file_replace_str, ""), folder_1, folder_2, '')
+    let subsituted_file = s:SwitchScript(a:file)
+    return s:SwapDirectory(subsituted_file)
 endfunction
 
 function! Open(file)

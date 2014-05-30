@@ -1,10 +1,31 @@
+let s:settings = [
+    'g:test_runner_base_dir',
+    'g:test_runner_command'
+]
+
+function! s:SettingsExist()
+    " Check if the settings for this plugin are set
+    for setting in s:settings
+        if !exists(setting)
+            echoerr setting . ' is not set'
+            return 0
+        endif
+    endfor
+    return 1
+endfunction
+
+function! s:GetTestList()
+    " Get the test list
+    if !exists('g:test_runner_matches')
+        return test_list = []
+    else
+        return test_list = g:test_runner_matches
+    endif
+endfunction
+
 function! s:IsTest(filename)
     " Check if file is a test
-    if !exists("g:test_runner_matches")
-        let test_list = []
-    else
-        let test_list = g:test_runner_matches
-    endif
+    let test_list = s:GetTestList()
     for var in test_list
         if match(a:filename, var) < 0
             return 0
@@ -15,24 +36,29 @@ endfunction
 
 function! s:SetThisRunner(filename)
     " Run the current test file
-    let test_path=split(a:filename, g:test_runner_base_dir)
-    let g:grb_runner_file='cd ' . g:test_runner_base_dir . ';' . g:test_runner_command . ' ' . test_path[-1]
+    let test_path = split(a:filename, g:test_runner_base_dir)
+    let g:grb_runner_file = test_path[-1]
 endfunction
+
+function! s:RunCommandIfExists()
+    " Runs a test if there is one set
+    if exists('g:test_runner_file')
+        let change_directory = 'cd ' . g:test_runner_base_dir . ';'
+        let run_test = g:test_runner_command . ' ' . g:test_runner_base_dir
+        exec ':!clear;' . change_directory . run_test
+    else
+        echoerr 'Error: no test to run!'
+    endif
+endif
 
 function! s:RunTest()
     " Run a test
-    if !(exists("g:test_runner_base_dir") && exists("g:test_runner_command"))
-        echoerr "Error: base dir or command not set!"
-        return
-    endif
-    let filename=expand('%:p')
-    if s:IsTest(filename)
-        call s:SetThisRunner(filename)
-    endif
-    if exists("g:grb_runner_file")
-        exec ":!clear;" . g:grb_runner_file
-    else
-        echoerr "Error: there's no test to run!"
+    if s:SettingsExist()
+        let filename = expand('%:p')
+        if s:IsTest(filename)
+            call s:SetThisRunner(filename)
+        endif
+        s:RunCommandIfExists()
     endif
 endfunction
 
