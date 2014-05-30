@@ -41,7 +41,7 @@ function! s:RunCommandIfExists()
     " Runs a test if there is one set
     if exists('g:test_runner_file')
         let change_directory = 'cd ' . g:test_runner_base_dir . ';'
-        let run_test = g:test_runner_command . ' ' . g:test_runner_base_dir
+        let run_test = g:test_runner_command . ' ' . g:test_runner_file
         exec ':!clear;' . change_directory . run_test
     else
         echoerr 'Error: no test to run!'

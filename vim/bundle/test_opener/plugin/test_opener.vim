@@ -56,7 +56,7 @@ function! s:GetRelatedFile(file)
     return s:SwapDirectory(subsituted_file)
 endfunction
 
-function! Open(file)
+function! s:Open(file)
     " Open the related file in a vsplit
     exec('vsplit ' . a:file)
 endfunction
