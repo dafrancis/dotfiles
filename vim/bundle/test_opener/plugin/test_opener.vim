@@ -33,9 +33,9 @@ function s:SwitchScript(file)
     let regex = '\\([^/]\\+\\)$'
     let prefix = g:test_opener_file_prefix
     if s:IsTest(a:file)
-        return subsitute(a:file, prefix . regex, '\\1', '')
+        return substitute(a:file, prefix . regex, '\\1', '')
     else
-        return subsitute(a:file, regex, prefix . '\\1', '')
+        return substitute(a:file, regex, prefix . '\\1', '')
     endif
 endfunction
 
@@ -44,9 +44,9 @@ function! s:SwapDirectory(file)
     let file1 = g:test_opener_swap_test
     let file2 = g:test_opener_swap_file
     if s:IsTest(a:file)
-        return subsitute(a:file, file1, file2, '')
+        return substitute(a:file, file1, file2, '')
     else
-        return subsitute(a:file, file2, file1, '')
+        return substitute(a:file, file2, file1, '')
     endif
 endfunction
 

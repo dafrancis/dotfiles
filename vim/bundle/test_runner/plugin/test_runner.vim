@@ -55,7 +55,7 @@ function! s:RunTest()
         if s:IsTest(filename)
             call s:SetThisRunner(filename)
         endif
-        s:RunCommandIfExists()
+        call s:RunCommandIfExists()
     endif
 endfunction
 
