@@ -2,24 +2,16 @@
 
 bundle=$1
 
-function vim_bundles() {
-    ls ~/.vim/bundle/
-}
-
 function update_bundle() {
     bundle=$1
     echo
     echo "Updating $bundle..."
-    cd ~/.vim/bundle/$bundle
-    git pull
-    cd ..
+    git submodule update "$HOME/.vim/bundle/$bundle"
 }
 
 
 function update_all_bundles() {
-    for bundle in `vim_bundles`; do
-        update_bundle $bundle
-    done
+    git submodule foreach git pull origin master
 }
 
 function main() {
