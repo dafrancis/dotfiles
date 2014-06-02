@@ -23,7 +23,7 @@ function download() {
     url=`github_url $bundle`
     cd $REPO_PATH
     git submodule add $url $BUNDLE_DIR/$name
-    git add -A
+    git add -A vim
     git commit -m "Install $url bundle as a submodule."
 }
 
