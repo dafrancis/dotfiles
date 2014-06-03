@@ -6,7 +6,7 @@
 	url = https://github.com/mattn/emmet-vim.git
 [submodule "vim/bundle/python-mode"]
 	path = vim/bundle/python-mode
-	url = https://github.com/klen/python-mode
+	url = https://github.com/klen/python-mode.git
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
