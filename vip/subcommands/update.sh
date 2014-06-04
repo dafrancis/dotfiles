@@ -13,7 +13,7 @@ function update_bundle() {
 
 function update_all_bundles() {
     git submodule foreach git pull origin master
-    git commit "$HOME/.vim/bundle/" -am "Updating vim submodules"
+    git commit "$HOME/.vim/bundle/" -m "Updating vim submodules"
 }
 
 function main() {
