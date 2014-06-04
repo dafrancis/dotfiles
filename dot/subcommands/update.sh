@@ -6,8 +6,7 @@ function main() {
     echo "Updating dotfiles..."
     cd $HOME/.dotfiles
     git pull
-    git submodule init
-    git submodule update
+    git submodule update --init
     sh vip/vip.sh update
 }
 
