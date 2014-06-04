@@ -11,6 +11,7 @@ ZSH_THEME="avit"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vip="~/.dotfiles/vip/vip.sh"
+alias dot="~/.dotfiles/dot/dot.sh"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +50,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-syntax-hilighting sublime svn python fabric jira history-substring-search)
+plugins=(git zsh-syntax-hilighting sublime svn python fabric jira)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,6 +89,8 @@ alias up="svn up"
 alias sdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh"
 alias chdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh --changelist"
 alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
+alias disk_space="df -kh"
+alias space_lookup="du -ksh *"
 export SVN_EDITOR=vim
 
 
@@ -134,12 +137,23 @@ function svn_remove_cl() {
     xargs svn changelist --remove
 }
 
+function dev_projects() {
+    ls /Users/dafrancis/bawe | grep "DEV"
+}
+
 function project_check() {
     cd /Users/dafrancis/bawe
     ls | grep "DEV" | sort > checkouts.tmp
     cat *.sublime-project | grep path | awk -F'"' '{print $4}' | sed 's/.*\///g' | grep "DEV" | sort > projects.tmp
     diff projects.tmp checkouts.tmp | awk '{print $2}' | grep "DEV" | sort
     rm -rf *.tmp
+}
+
+function laundry() {
+    for project in `dev_projects`; do
+        rm -rf /Users/dafrancis/bawe/$project/BacsActive/ui/media/* || echo
+        rm -rf /Users/dafrancis/bawe/$project/install/Mysql* || echo
+    done
 }
 
 function default_changelist() {
@@ -151,10 +165,12 @@ function make_inits() {
     find . -type d | grep -v svn | awk '{ print "touch " $0 "/__init__.py" }' | sh
 }
 
+function remove_inits() {
+    find . -type d | grep -v svn | awk '{ print "rm -rf " $0 "/__init__.p* }" }' | sh
+    #svn st | grep -E "^\?.*__init__.py$" | awk '{ print $2  }' | xargs rm -rf
+}
+
 zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 zstyle ':completion:*:man:*'      menu yes select
-
-
-PATH="/usr/local/bin:$HOME/bin:$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
