@@ -7,11 +7,13 @@ function update_bundle() {
     echo
     echo "Updating $bundle..."
     git submodule update "$HOME/.vim/bundle/$bundle"
+    git commit "$HOME/.vim/bundle/" -am "Updating vim submodule"
 }
 
 
 function update_all_bundles() {
     git submodule foreach git pull origin master
+    git commit "$HOME/.vim/bundle/" -am "Updating vim submodules"
 }
 
 function main() {
