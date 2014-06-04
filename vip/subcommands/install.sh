@@ -36,12 +36,18 @@ function check_and_download() {
 }
 
 function main() {
-    if [[ -z $bundle || -z $name ]]; then
-        echo "Params missing!"
-    elif [ -d $BUNDLE_DIR/$name ]; then
-        echo "Already a bundle called '$name'"
+    if [[ -z $bundle ]]; then
+        echo "No bundle specified!"
     else
-        check_and_download
+        if [[ -z $name  ]]; then
+            name=$(echo $bundle | cut -d \/ -f 2)
+        fi
+
+        if [ -d $BUNDLE_DIR/$name ]; then
+            echo "Already a bundle called '$name'"
+        else
+            check_and_download
+        fi
     fi
 }
 

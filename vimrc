@@ -152,3 +152,4 @@ set nofoldenable
 
 let g:multi_cursor_next_key='<C-d>'
 
+let g:vim_markdown_folding_disabled=1

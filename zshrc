@@ -164,6 +164,11 @@ function make_inits() {
     find . -type d | grep -v svn | awk '{ print "touch " $0 "/__init__.py" }' | sh
 }
 
+function remove_inits() {
+    find . -type d | grep -v svn | awk '{ print "rm -rf " $0 "/__init__.p* }" }' | sh
+    #svn st | grep -E "^\?.*__init__.py$" | awk '{ print $2  }' | xargs rm -rf
+}
+
 zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 zstyle ':completion:*:man:*'      menu yes select
