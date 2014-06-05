@@ -7,7 +7,8 @@ function main() {
     cd $HOME/.dotfiles
     git pull
     git submodule update --init
-    sh vip/vip.sh update
+    git submodule foreach git pull origin master
+    git commit "$HOME/.vim/bundle/" -m "Updating vim submodules"
 }
 
 main
