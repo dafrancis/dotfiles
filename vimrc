@@ -138,8 +138,6 @@ map <leader>n :call RenameFile()<cr>
 " Python IDE Setup
 " ============================================================================
 
-let g:Powerline_symbols = 'fancy'
-
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
@@ -153,3 +151,7 @@ set nofoldenable
 let g:multi_cursor_next_key='<C-d>'
 
 let g:vim_markdown_folding_disabled=1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+:let g:airline_theme='powerlineish'
