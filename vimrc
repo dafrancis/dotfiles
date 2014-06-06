@@ -2,8 +2,6 @@ au BufWritePost .vimrc so ~/.vimrc
 
 if version < 703
     let g:pathogen_disabled = ['ultisnips']
-else
-    let g:pathogen_disabled = ['powerline']
 endif
 
 call pathogen#infect()
@@ -140,8 +138,6 @@ map <leader>n :call RenameFile()<cr>
 " Python IDE Setup
 " ============================================================================
 
-let g:Powerline_symbols = 'fancy'
-
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
@@ -158,3 +154,4 @@ let g:vim_markdown_folding_disabled=1
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+:let g:airline_theme='powerlineish'
