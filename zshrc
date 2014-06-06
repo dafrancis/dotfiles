@@ -117,7 +117,7 @@ function commit_changes {
             echo -n "Enter your commit message: "
             read message
         else
-            message = $2
+            message=$2
         fi
         if [ $message ]; then
             svn commit --cl $1 -m "$1 : $message"
