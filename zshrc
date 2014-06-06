@@ -11,6 +11,7 @@ ZSH_THEME="avit"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vip="~/.dotfiles/vip/vip.sh"
+alias dot="~/.dotfiles/dot/dot.sh"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +50,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-syntax-hilighting sublime svn python fabric jira history-substring-search)
+plugins=(git zsh-syntax-hilighting sublime svn python fabric jira)
 
 source $ZSH/oh-my-zsh.sh
 
