@@ -1,6 +1,8 @@
 au BufWritePost .vimrc so ~/.vimrc
 
-if version < 703
+let is_old = version < 703
+
+if is_old
     let g:pathogen_disabled = ['ultisnips']
 endif
 
@@ -44,17 +46,15 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 
 set t_Co=256
 color wombat256mod
-" color desert
 
 filetype off
 filetype plugin indent on
-syntax on
 
 set number  " show line numbers
 set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-if version >= 703
+if !is_old
     set colorcolumn=80
 endif
 highlight ColorColumn ctermbg=233
@@ -82,7 +82,6 @@ set noswapfile
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 augroup vimrcEx
     " Clear all autocmds in the group
     autocmd!
@@ -119,20 +118,6 @@ augroup vimrcEx
     " indent slim two spaces, not four
     autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RENAME CURRENT FILE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-map <leader>n :call RenameFile()<cr>
 
 " ============================================================================
 " Python IDE Setup
