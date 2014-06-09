@@ -8,6 +8,10 @@ endif
 
 call pathogen#infect()
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
+
 set pastetoggle=<F2>
 set clipboard=unnamed
 au InsertLeave * set nopaste
@@ -75,10 +79,6 @@ set incsearch
 set ignorecase
 set smartcase
 
-set nobackup
-set nowritebackup
-set noswapfile
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -93,8 +93,8 @@ augroup vimrcEx
     \ endif
 
     "for ruby, autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
-    autocmd FileType python set sw=4 sts=4 et
+    autocmd FileType ruby,haml,eruby,yaml,sass,cucumber set ai sw=2 sts=2 et
+    autocmd FileType python,javascript,html set sw=4 sts=4 et
 
     autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
@@ -136,7 +136,3 @@ set nofoldenable
 let g:multi_cursor_next_key='<C-d>'
 
 let g:vim_markdown_folding_disabled=1
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-:let g:airline_theme='powerlineish'
