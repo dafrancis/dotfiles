@@ -67,3 +67,6 @@
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
+[submodule "vim/bundle/vim-bling"]
+	path = vim/bundle/vim-bling
+	url = https://github.com/ivyl/vim-bling.git
