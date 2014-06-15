@@ -70,3 +70,6 @@
 [submodule "vim/bundle/vim-bling"]
 	path = vim/bundle/vim-bling
 	url = https://github.com/ivyl/vim-bling.git
+[submodule "vim/bundle/vim-trailing-whitespace"]
+	path = vim/bundle/vim-trailing-whitespace
+	url = https://github.com/bronson/vim-trailing-whitespace.git
