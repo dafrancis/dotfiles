@@ -3,7 +3,7 @@ au BufWritePost .vimrc so ~/.vimrc
 let is_old = version < 703
 
 if is_old
-    let g:pathogen_disabled = ['ultisnips']
+  let g:pathogen_disabled = ['ultisnips']
 endif
 
 call pathogen#infect()
@@ -59,7 +59,7 @@ set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 if !is_old
-    set colorcolumn=80
+  set colorcolumn=80
 endif
 highlight ColorColumn ctermbg=233
 
@@ -83,40 +83,40 @@ set smartcase
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup vimrcEx
-    " Clear all autocmds in the group
-    autocmd!
-    autocmd FileType text setlocal textwidth=78
-    " Jump to last cursor position unless it's invalid or in an event handler
-    autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
 
-    "for ruby, autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,haml,eruby,yaml,sass,cucumber set ai sw=2 sts=2 et
-    autocmd FileType python,javascript,html set sw=4 sts=4 et
+  "for ruby, autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,haml,eruby,yaml,sass,cucumber,vim set ai sw=2 sts=2 et
+  autocmd FileType python,javascript,html set sw=4 sts=4 et
 
-    autocmd! BufRead,BufNewFile *.sass setfiletype sass
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
-    autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-    autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
 
-    " Indent p tags
-    autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+  " Indent p tags
+  autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
 
-    " Don't syntax highlight markdown because it's often wrong
-    autocmd! FileType mkd setlocal syn=off
+  " Don't syntax highlight markdown because it's often wrong
+  autocmd! FileType mkd setlocal syn=off
 
-    " Leave the return key alone when in command line windows, since it's used
-    " to run commands there.
-    autocmd! CmdwinEnter * :unmap <cr>
-    autocmd! CmdwinLeave * :call MapCR()
+  " Leave the return key alone when in command line windows, since it's used
+  " to run commands there.
+  autocmd! CmdwinEnter * :unmap <cr>
+  autocmd! CmdwinLeave * :call MapCR()
 
-    " *.md is markdown
-    autocmd! BufNewFile,BufRead *.md setlocal ft=
+  " *.md is markdown
+  autocmd! BufNewFile,BufRead *.md setlocal ft=
 
-    " indent slim two spaces, not four
-    autocmd! FileType *.slim set sw=2 sts=2 et
+  " indent slim two spaces, not four
+  autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
 " ============================================================================
