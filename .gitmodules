@@ -76,3 +76,6 @@
 [submodule "vim/bundle/vim-ctrlspace"]
 	path = vim/bundle/vim-ctrlspace
 	url = https://github.com/szw/vim-ctrlspace.git
+[submodule "vim/bundle/vim-snippets"]
+	path = vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
