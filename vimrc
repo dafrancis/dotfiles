@@ -58,6 +58,8 @@ set incsearch
 set ignorecase
 set smartcase
 
+set hidden
+
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
