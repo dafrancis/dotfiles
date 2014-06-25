@@ -84,7 +84,6 @@ alias serve="python -m SimpleHTTPServer"
 alias json="python -mjson.tool"
 alias tmux="TERM=screen-256color-bce tmux"
 alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-alias ssh-ft="ssh -i $HOME/.ssh/df_ft_rsa -l dafydd.francis"
 alias up="svn up"
 alias sdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh"
 alias chdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh --changelist"
@@ -93,6 +92,10 @@ alias disk_space="df -kh"
 alias space_lookup="du -ksh *"
 export SVN_EDITOR=vim
 
+
+function ssh-ft() {
+    ssh -i $HOME/.ssh/df_ft_rsa -l dafydd.francis $@ || ssh -i $HOME/.ssh/df_ft_rsa -l dafyddfrancis $@
+}
 
 function reload() {
     source ~/.zshrc
