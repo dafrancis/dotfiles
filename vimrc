@@ -1,5 +1,3 @@
-au BufWritePost .vimrc so ~/.vimrc
-
 let is_old = version < 703
 
 if is_old
@@ -8,7 +6,6 @@ endif
 
 call pathogen#infect()
 
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 
@@ -40,6 +37,7 @@ let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
+set wildignore+=*/cover/*
 
 let g:multi_cursor_next_key='<C-d>'
 
