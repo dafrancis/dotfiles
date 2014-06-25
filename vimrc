@@ -33,6 +33,12 @@ if !is_old
 endif
 highlight ColorColumn ctermbg=233
 
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
@@ -43,9 +49,9 @@ let g:multi_cursor_next_key='<C-d>'
 
 let g:vim_markdown_folding_disabled=1
 
-silent! if emoji#available()
-  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-  let g:gitgutter_sign_modified_removed = emoji#for('collision')
-endif
+"silent! if emoji#available()
+  let g:signify_sign_add = emoji#for('small_blue_diamond')
+  let g:signify_sign_change = emoji#for('small_orange_diamond')
+  let g:signify_sign_delete = emoji#for('small_red_triangle')
+  let g:signify_sign_delete_first_line = emoji#for('collision')
+"endif
