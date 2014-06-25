@@ -1,3 +1,7 @@
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
 set t_Co=256
 
 set number  " show line numbers
