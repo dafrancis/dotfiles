@@ -16,7 +16,7 @@ au InsertLeave * set nopaste
 map <F5> :w<CR>:!clear;python %<CR>
 map <F6> :w<CR>:!clear;nosetests %<CR>
 
-set mouse=a  " on OSX press ALT and click
+set mouse=a
 
 let mapleader = ","
 
@@ -49,9 +49,12 @@ let g:multi_cursor_next_key='<C-d>'
 
 let g:vim_markdown_folding_disabled=1
 
-"silent! if emoji#available()
-  let g:signify_sign_add = emoji#for('small_blue_diamond')
-  let g:signify_sign_change = emoji#for('small_orange_diamond')
-  let g:signify_sign_delete = emoji#for('small_red_triangle')
-  let g:signify_sign_delete_first_line = emoji#for('collision')
-"endif
+map <c-up> [e
+map <c-down> ]e
+
+silent! if emoji#available()
+let g:svngutter_sign_added = emoji#for('small_blue_diamond')
+let g:svngutter_sign_modified = emoji#for('small_orange_diamond')
+let g:svngutter_sign_removed = emoji#for('small_red_triangle')
+let g:svngutter_sign_modified_removed =  emoji#for('collision')
+endif
