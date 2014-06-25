@@ -94,3 +94,6 @@
 [submodule "vim/bundle/vim-signify"]
 	path = vim/bundle/vim-signify
 	url = https://github.com/mhinz/vim-signify.git
+[submodule "vim/bundle/vim-svngutter"]
+	path = vim/bundle/vim-svngutter
+	url = https://github.com/vim-scripts/vim-svngutter.git
