@@ -97,3 +97,6 @@
 [submodule "vim/bundle/vim-svngutter"]
 	path = vim/bundle/vim-svngutter
 	url = https://github.com/vim-scripts/vim-svngutter.git
+[submodule "vim/bundle/vim-gitgutter"]
+	path = vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
