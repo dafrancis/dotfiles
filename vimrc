@@ -52,6 +52,9 @@ let g:vim_markdown_folding_disabled=1
 map <c-up> [e
 map <c-down> ]e
 
+setlocal completefunc=emoji#complete
+setlocal completeopt=menu
+
 silent! if emoji#available()
   let g:syntastic_error_symbol = emoji#for('no_entry')
   let g:syntastic_style_error_symbol = emoji#for('no_entry_sign')
