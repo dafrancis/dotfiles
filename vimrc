@@ -33,12 +33,6 @@ if !is_old
 endif
 highlight ColorColumn ctermbg=233
 
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
@@ -60,6 +54,7 @@ silent! if emoji#available()
   let g:syntastic_style_error_symbol = emoji#for('no_entry_sign')
   let g:syntastic_warning_symbol = emoji#for('warning')
   let g:syntastic_style_warning_symbol = emoji#for("exclamation")
+
   highlight SyntasticErrorSign guifg=NONE guibg=NONE
   highlight SyntasticWarningSign guifg=NONE guibg=NONE
   highlight SyntasticStyleErrorSign guifg=NONE guibg=NONE

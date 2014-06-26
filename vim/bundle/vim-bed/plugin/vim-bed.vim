@@ -24,6 +24,12 @@ set hidden
 
 set undolevels=700
 
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
