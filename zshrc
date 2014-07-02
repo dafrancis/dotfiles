@@ -13,17 +13,8 @@ ZSH_THEME="avit"
 alias vip="~/.dotfiles/vip/vip.sh"
 alias dot="~/.dotfiles/dot/dot.sh"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -39,17 +30,6 @@ COMPLETION_WAITING_DOTS="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git zsh-syntax-hilighting sublime svn python fabric jira)
 
 source $ZSH/oh-my-zsh.sh
@@ -103,8 +83,7 @@ function reload() {
 }
 
 function check_changes() {
-    if [ $# -eq 0 ]
-    then
+    if [ $# -eq 0 ]; then
         echo "Missing changelist. Choose one of the following:"
         svn st -q | grep "^---" | sed -e "s/--- Changelist '//g" -e "s/'://g"
     else
@@ -171,6 +150,10 @@ function make_inits() {
 function remove_inits() {
     find . -type d | grep -v svn | awk '{ print "rm -rf " $0 "/__init__.p* }" }' | sh
     #svn st | grep -E "^\?.*__init__.py$" | awk '{ print $2  }' | xargs rm -rf
+}
+
+function svn_add_missing() {
+    svn st "$1" | grep -E '^\?' | awk '{ print $2 }' | xargs svn add
 }
 
 zstyle ':completion:*:manuals'    separate-sections true
