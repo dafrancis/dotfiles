@@ -100,3 +100,6 @@
 [submodule "vim/bundle/vim-gitgutter"]
 	path = vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "vim/bundle/vim-no-swaps"]
+	path = vim/bundle/vim-no-swaps
+	url = https://github.com/dafrancis/vim-no-swaps.git
