@@ -103,3 +103,6 @@
 [submodule "vim/bundle/vim-no-swaps"]
 	path = vim/bundle/vim-no-swaps
 	url = https://github.com/dafrancis/vim-no-swaps.git
+[submodule "vim/bundle/vim-bed"]
+	path = vim/bundle/vim-bed
+	url = https://github.com/dafrancis/vim-bed.git
