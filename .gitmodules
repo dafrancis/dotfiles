@@ -106,3 +106,6 @@
 [submodule "vim/bundle/vim-bed"]
 	path = vim/bundle/vim-bed
 	url = https://github.com/dafrancis/vim-bed.git
+[submodule "vim/bundle/browser-connect.vim"]
+	path = vim/bundle/browser-connect.vim
+	url = https://github.com/Bogdanp/browser-connect.vim.git
