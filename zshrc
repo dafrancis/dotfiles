@@ -38,6 +38,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/afal/.rvm/bin:/Applications/Xcode.app/Contents/Developer/usr/subversion-1.6/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+export VIM=$HOME/vimscript/runtime/
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
