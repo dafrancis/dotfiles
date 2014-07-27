@@ -10,7 +10,9 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 
 set pastetoggle=<F2>
-set clipboard=unnamed
+if $TMUX == ''
+  set clipboard=unnamed
+endif
 au InsertLeave * set nopaste
 
 map <F5> :w<CR>:!clear;python %<CR>

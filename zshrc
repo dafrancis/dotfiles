@@ -1,36 +1,18 @@
-# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="avit"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vip="~/.dotfiles/vip/vip.sh"
-alias dot="~/.dotfiles/dot/dot.sh"
+alias vip="$HOME/.dotfiles/vip/vip.sh"
+alias dot="$HOME/.dotfiles/dot/dot.sh"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to disable command auto-correction.
-# DISABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+ZSH_CUSTOM="$HOME/.dotfiles/zsh/"
 
-plugins=(git zsh-syntax-hilighting sublime svn python fabric jira)
+plugins=(git zsh-syntax-hilighting sublime svn python fabric jira svn-changelist inits)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -47,8 +29,9 @@ export VIM=$HOME/vimscript/runtime/
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='subl'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -64,60 +47,21 @@ alias ssh="$HOME/.dotfiles/bash_scripts/safe_colour_ssh $1"
 alias serve="python -m SimpleHTTPServer"
 alias json="python -mjson.tool"
 alias tmux="TERM=screen-256color-bce tmux"
-alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+alias s=subl
 alias up="svn up"
 alias sdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh"
-alias chdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh --changelist"
 alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
 alias disk_space="df -kh"
 alias space_lookup="du -ksh *"
 export SVN_EDITOR=vim
 
-
 function ssh-ft() {
-    ssh -i $HOME/.ssh/df_ft_rsa -l dafydd.francis $@ || ssh -i $HOME/.ssh/df_ft_rsa -l dafyddfrancis $@
+    ssh -i $HOME/.ssh/df_ft_rsa -l dafydd.francis $@
 }
 
 function reload() {
     source ~/.zshrc
     clear
-}
-
-function check_changes() {
-    if [ $# -eq 0 ]; then
-        echo "Missing changelist. Choose one of the following:"
-        svn st -q | grep "^---" | sed -e "s/--- Changelist '//g" -e "s/'://g"
-    else
-        chdiff $1
-    fi
-}
-
-function commit_changes {
-    if [ $# -eq 0 ]; then
-        echo "Missing changelist. Choose one of the following:"
-        svn st -q | grep "^---" | sed -e "s/--- Changelist '//g" -e "s/'://g"
-    else
-        if [ $# -eq 1 ]; then
-            echo -n "Enter your commit message: "
-            read message
-        else
-            message=$2
-        fi
-        if [ $message ]; then
-            svn commit --cl $1 -m "$1 : $message"
-            echo "Changes for ticket $1 committed!"
-        else
-            echo "No message provided. Exiting"
-        fi
-    fi
-}
-
-function svn_remove_cl() {
-    svn revert --cl $1 -R .
-    svn status |\
-    sed -n "/--- Changelist '$1':/,/--- Changelist.*/p" |\
-    grep -v '^--- Changelist' |\
-    xargs svn changelist --remove
 }
 
 function dev_projects() {
@@ -134,23 +78,9 @@ function project_check() {
 
 function laundry() {
     for project in `dev_projects`; do
-        rm -rf /Users/dafrancis/bawe/$project/BacsActive/ui/media/* || echo
-        rm -rf /Users/dafrancis/bawe/$project/install/Mysql* || echo
+        rm -rf $HOME/bawe/$project/BacsActive/ui/media/* || echo
+        rm -rf $HOME/bawe/$project/install/Mysql* || echo
     done
-}
-
-function default_changelist() {
-svn st -q | xargs | sed -e 's/Performing status on external item.*//g' -e 's/ \([MAD]\)/\
-\1/g'
-}
-
-function make_inits() {
-    find . -type d | grep -v svn | awk '{ print "touch " $0 "/__init__.py" }' | sh
-}
-
-function remove_inits() {
-    find . -type d | grep -v svn | awk '{ print "rm -rf " $0 "/__init__.p* }" }' | sh
-    #svn st | grep -E "^\?.*__init__.py$" | awk '{ print $2  }' | xargs rm -rf
 }
 
 function svn_add_missing() {
