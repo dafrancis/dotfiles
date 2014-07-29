@@ -109,3 +109,6 @@
 [submodule "vim/bundle/browser-connect.vim"]
 	path = vim/bundle/browser-connect.vim
 	url = https://github.com/Bogdanp/browser-connect.vim.git
+[submodule "vim/bundle/vimroom"]
+	path = vim/bundle/vimroom
+	url = https://github.com/mikewest/vimroom.git
