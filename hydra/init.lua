@@ -1,7 +1,7 @@
 require "grid"
-hydra.douserfile("menuconfig")
 hydra.douserfile("donate")
 hydra.douserfile("handofgod")
+hydra.douserfile("menuconfig")
 
 notify.show("Hydra", "Started!", "", "")
 

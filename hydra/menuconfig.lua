@@ -8,8 +8,10 @@ menu.show(function()
 
     return {
       {title = "Reload Config", fn = hydra.reload},
+      {title = "handofg0d", fn = handofgod},
       {title = "-"},
       {title = "About", fn = hydra.showabout},
+      {title = "Donate", fn = donate},
       {title = updatetitles[hasupdate], fn = updatefns[hasupdate]},
       {title = "Quit Hydra", fn = os.exit},
     }

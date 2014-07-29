@@ -51,6 +51,7 @@ alias s=subl
 alias up="svn up"
 alias sdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh"
 alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
+alias svnall="$HOME/.dotfiles/bash_scripts/svnall"
 alias disk_space="df -kh"
 alias space_lookup="du -ksh *"
 export SVN_EDITOR=vim
