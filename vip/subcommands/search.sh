@@ -13,8 +13,21 @@ function search_github() {
     curl -s "https://api.github.com/search/repositories?q=$query&sort=stars&order=desc"
 }
 
+function search_vim_awesome() {
+    query=`echo "vim $query" | urlencode`
+    curl -s "http://vimawesome.com/api/plugins?query=$query"
+}
+
 function parse_json() {
     jq '.items[] | "\(.full_name){\(.description)"'
+}
+
+function parse_awesome() {
+    jq '.plugins[] | "\(if .github_owner != "" then .github_owner else "vim-scripts" end)/\(.slug){\(.short_desc)"'
+}
+
+function awesome_results() {
+    search_vim_awesome | parse_awesome
 }
 
 function results() {
@@ -22,7 +35,7 @@ function results() {
 }
 
 function format_results() {
-    results | sed 's/"//g' | column -t -s '{'
+    awesome_results | sed 's/"//g' | column -t -s '{'
 }
 
 function search() {
