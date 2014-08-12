@@ -4,7 +4,7 @@
 -- asking for donations. If you find it helpful, I encourage you to
 -- donate what you believe would have been a fair price for a license:
 
-local function donate()
+function ext.donate()
   -- Donate via PayPal (default)
   os.execute("open 'https://www.paypal.com/cgi-bin/webscr?business=sbdegutis@gmail.com&cmd=_donations&item_name=Hydra.app%20donation'")
 
@@ -15,4 +15,4 @@ local function donate()
   -- hydra.alert("Bitcoin address: 18LEhURYNgkC9PPdtdXShDoyaHXGaLENe7")
 end
 
-hotkey.bind({"cmd", "alt", "ctrl"}, "D", donate)
+hotkey.bind({"cmd", "alt", "ctrl"}, "D", ext.donate)
