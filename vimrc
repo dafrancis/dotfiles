@@ -1,7 +1,7 @@
 let is_old = version < 703
 
 if is_old
-  let g:pathogen_disabled = ['ultisnips', 'vim-ctrlspace']
+  let g:pathogen_disabled = ['ultisnips', 'vim-ctrlspace', 'vaxe']
 endif
 
 call pathogen#infect()
