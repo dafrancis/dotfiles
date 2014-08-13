@@ -11,8 +11,8 @@ function choice(list)
   return list[math.random(#list)]
 end
 
-function handofgod()
-  notify.show("", string.format("I would like to %s your %s %s.", choice(verb), choice(noun), choice(location)), "", "")
+function ext.handofgod()
+  notify.show("handofg0d", string.format("I would like to %s your %s %s.", choice(verb), choice(noun), choice(location)), "", "")
 end
 
-hotkey.bind({"cmd", "alt", "ctrl"}, "H", handofgod)
+hotkey.bind({"cmd", "alt", "ctrl"}, "H", ext.handofgod)
