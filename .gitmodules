@@ -121,3 +121,6 @@
 [submodule "vim/bundle/vaxe"]
 	path = vim/bundle/vaxe
 	url = https://github.com/jdonaldson/vaxe.git
+[submodule "vim/bundle/twitvim"]
+	path = vim/bundle/twitvim
+	url = https://github.com/vim-scripts/twitvim.git
