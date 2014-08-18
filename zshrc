@@ -77,13 +77,6 @@ function project_check() {
     rm -rf *.tmp
 }
 
-function laundry() {
-    for project in `dev_projects`; do
-        rm -rf $HOME/bawe/$project/BacsActive/ui/media/* || echo
-        rm -rf $HOME/bawe/$project/install/Mysql* || echo
-    done
-}
-
 function svn_add_missing() {
     svn st "$1" | grep -E '^\?' | awk '{ print $2 }' | xargs svn add
 }
