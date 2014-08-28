@@ -7,6 +7,7 @@ ZSH_THEME="avit"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vip="$HOME/.dotfiles/vip/vip.sh"
 alias dot="$HOME/.dotfiles/dot/dot.sh"
+alias v="$HOME/.dotfiles/bash_scripts/find_vcs.sh"
 
 COMPLETION_WAITING_DOTS="true"
 
