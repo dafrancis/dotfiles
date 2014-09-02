@@ -50,8 +50,8 @@ function find_vcs_dir() {
 function main () {
     vcs=`find_vcs_dir`
     if [ $vcs ]; then
-        exec $vcs $@
+        $vcs "$@"
     fi
 }
 
-main $@
+main "$@"
