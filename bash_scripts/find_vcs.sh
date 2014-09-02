@@ -48,7 +48,10 @@ function find_vcs_dir() {
 }
 
 function main () {
-    find_vcs_dir
+    vcs=`find_vcs_dir`
+    if [ $vcs ]; then
+        exec $vcs $@
+    fi
 }
 
-main
+main $@
