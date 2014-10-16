@@ -55,6 +55,7 @@ alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
 alias svnall="$HOME/.dotfiles/bash_scripts/svnall"
 alias disk_space="df -kh"
 alias space_lookup="du -ksh *"
+alias rmedited="svn st | grep -E '^\?' | awk '{ print $2  }' | grep -E '\.edited$' | rm -rf"
 export SVN_EDITOR=vim
 
 function ssh-ft() {
