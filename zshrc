@@ -55,7 +55,9 @@ alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
 alias svnall="$HOME/.dotfiles/bash_scripts/svnall"
 alias disk_space="df -kh"
 alias space_lookup="du -ksh *"
+alias stu="svn st | grep -E '^\?' | awk '{ print $2  }'"
 alias rmedited="svn st | grep -E '^\?' | awk '{ print $2  }' | grep -E '\.edited$' | rm -rf"
+alias grest="svn st | awk '{ print $2  }' | xargs grep -s"
 export SVN_EDITOR=vim
 
 function ssh-ft() {
@@ -87,3 +89,6 @@ zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 zstyle ':completion:*:man:*'      menu yes select
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
