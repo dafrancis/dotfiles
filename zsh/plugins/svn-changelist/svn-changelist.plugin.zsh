@@ -38,6 +38,6 @@ function svn_remove_cl() {
 }
 
 function default_changelist() {
-    svn st -q | xargs | sed -e 's/Performing status on external item.*//g' -e 's/ \([MAD]\)/\
+    svn st -q | xargs | sed -e 's/\n\n.*//g' -e 's/ \([MAD]\)/\
 \1/g'
 }

@@ -55,9 +55,10 @@ alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
 alias svnall="$HOME/.dotfiles/bash_scripts/svnall"
 alias disk_space="df -kh"
 alias space_lookup="du -ksh *"
-alias stu="svn st | grep -E '^\?' | awk '{ print $2  }'"
-alias rmedited="svn st | grep -E '^\?' | awk '{ print $2  }' | grep -E '\.edited$' | rm -rf"
-alias grest="svn st | awk '{ print $2  }' | xargs grep -s"
+alias stu="svn st | grep -E '^\?' | awk '{ print \$2  }'"
+alias rmedited="svn st | grep -E '^\?' | awk '{ print \$2  }' | grep -E '\.edited$' | xargs rm -rf"
+alias grest="svn st | awk '{ print \$2  }' | xargs grep -s"
+alias search_hosts="grep -v -E '^(\s*|#.*)$' /etc/hosts | awk '{ print \$2  }' | grep"
 export SVN_EDITOR=vim
 
 function ssh-ft() {
