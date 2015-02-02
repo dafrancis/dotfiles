@@ -19,7 +19,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/afal/.rvm/bin:/Applications/Xcode.app/Contents/Developer/usr/subversion-1.6/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 export VIM=$HOME/vimscript/runtime/
 
@@ -55,15 +55,12 @@ alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
 alias svnall="$HOME/.dotfiles/bash_scripts/svnall"
 alias disk_space="df -kh"
 alias space_lookup="du -ksh *"
-alias stu="svn st | grep -E '^\?' | awk '{ print \$2  }'"
-alias rmedited="svn st | grep -E '^\?' | awk '{ print \$2  }' | grep -E '\.edited$' | xargs rm -rf"
+alias stu="svn st | awk '/^\?/ { print \$2  }'"
+alias rmedited="svn st | awk '/^\?/ { print \$2  }' | grep -E '\.edited$' | xargs rm -rf"
 alias grest="svn st | awk '{ print \$2  }' | xargs grep -s"
 alias search_hosts="grep -v -E '^(\s*|#.*)$' /etc/hosts | awk '{ print \$2  }' | grep"
+alias ssh-ft="ssh -i $HOME/.ssh/df_ft_rsa -l dafydd.francis"
 export SVN_EDITOR=vim
-
-function ssh-ft() {
-    ssh -i $HOME/.ssh/df_ft_rsa -l dafydd.francis $@
-}
 
 function reload() {
     source ~/.zshrc
@@ -77,19 +74,18 @@ function dev_projects() {
 function project_check() {
     cd /Users/dafrancis/bawe
     ls | grep "DEV" | sort > checkouts.tmp
-    cat *.sublime-project | grep path | awk -F'"' '{print $4}' | sed 's/.*\///g' | grep "DEV" | sort > projects.tmp
+    cat *.sublime-project | awk -F'"' '/path/{print $4}' | sed 's/.*\///g' | grep "DEV" | sort > projects.tmp
     diff projects.tmp checkouts.tmp | awk '{print $2}' | grep "DEV" | sort
     rm -rf *.tmp
 }
 
 function svn_add_missing() {
-    svn st "$1" | grep -E '^\?' | awk '{ print $2 }' | xargs svn add
+    svn st "$1" | awk '/^\?/{ print $2 }' | xargs svn add
 }
 
 zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 zstyle ':completion:*:man:*'      menu yes select
-
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
