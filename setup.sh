@@ -1,3 +1,4 @@
+A
 #!/bin/bash
 
 set -e
@@ -18,6 +19,8 @@ function setup_zsh() {
 }
 
 function setup_bash() {
+    # TODO make a bashrc
+    echo "-- (Bash Mode currently in todo mode)"
 }
 
 function setup_shell() {
@@ -53,6 +56,8 @@ function main() {
     if `is_mac`; then
         echo "-- Mac detected, installing mac specific stuff..."
         setup_hydra
+    else
+        echo "-- You're probably using linux or bsd or something else so I'm not going to do anything"
     fi
 }
 
