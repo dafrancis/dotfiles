@@ -10,6 +10,8 @@ function is_mac() {
 function setup_zsh() {
     # Setup zsh as default shell
     chsh -s /bin/zsh
+    # This should probably go to the backup plan if it fails
+    # (the backup plan is use bash)
 
     # Install Oh My Zsh
     curl -L http://install.ohmyz.sh | sh
@@ -19,8 +21,11 @@ function setup_zsh() {
 }
 
 function setup_bash() {
-    # TODO make a bashrc
     echo "-- (Bash Mode currently in todo mode)"
+    rm -rf ~/.bashrc # Delete any default bashrc
+    ln -fs ~/.dotfiles/bashrc ~/.bashrc
+
+    # Hey it's not as fleshed out as zshrc but it's something I guess
 }
 
 function setup_shell() {
@@ -43,11 +48,16 @@ function setup_vim() {
     # yes. yes you would.
     ln -fs ~/.dotfiles/vimrc ~/.nvimrc
     ln -fs ~/.dotfiles/vim ~/.nvim
+    # idk why you'd want to do this because no one uses neovim
+    # Why am I talking to myself?
 }
 
 function setup_hydra() {
     # So how about them window managers
     ln -fs ~/.dotfiles/hydra ~/.hydra
+    # haha didn't the developer change it to mjolnir after like 2 weeks?
+    # and LITERALLY CHANGED EVERYTHING?
+    # I should get around to setting up that probably
 }
 
 function main() {
