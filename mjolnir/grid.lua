@@ -3,94 +3,40 @@ local libgrid = require "mjolnir.bg.grid"
 
 local grid = {}
 
-function grid.fullscreen()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
+function grid.tile(pos)
+  return function()
+    local win = window.focusedwindow()
+    local f = win:screen():frame()
 
-  win:setframe(f)
+    if string.match(pos, "L") or string.match(pos, "R") then
+      f.w = f.w / 2
+      if string.match(pos, "R") then
+        f.x = f.x + f.w
+      end
+    end
+
+    if string.match(pos, "T") or string.match(pos, "B") then
+      f.h = f.h / 2
+      if string.match(pos, "B") then
+        f.y = f.y + f.h
+      end
+    end
+
+    win:setframe(f)
+  end
 end
 
-function grid.lefthalf()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
+grid.fullscreen = grid.tile("F")
 
-  f.w = f.w / 2
+grid.lefthalf = grid.tile("L")
+grid.righthalf = grid.tile("R")
+grid.tophalf = grid.tile("T")
+grid.bottomhalf = grid.tile("B")
 
-  win:setframe(f)
-end
-
-function grid.righthalf()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
-
-  f.w = f.w / 2
-  f.x = f.x + f.w
-
-  win:setframe(f)
-end
-
-function grid.tophalf()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
-
-  f.h = f.h / 2
-
-  win:setframe(f)
-end
-
-function grid.bottomhalf()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
-
-  f.h = f.h / 2
-  f.y = f.y + f.h
-
-  win:setframe(f)
-end
-
-function grid.topleft()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
-
-  f.w = f.w / 2
-  f.h = f.h / 2
-
-  win:setframe(f)
-end
-
-function grid.bottomleft()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
-
-  f.w = f.w / 2
-  f.h = f.h / 2
-  f.y = f.y + f.h
-
-  win:setframe(f)
-end
-
-function grid.topright()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
-
-  f.w = f.w / 2
-  f.h = f.h / 2
-  f.x = f.x + f.w
-
-  win:setframe(f)
-end
-
-function grid.bottomright()
-  local win = window.focusedwindow()
-  local f = win:screen():frame()
-
-  f.w = f.w / 2
-  f.h = f.h / 2
-  f.x = f.x + f.w
-  f.y = f.y + f.h
-
-  win:setframe(f)
-end
+grid.topleft = grid.tile("TL")
+grid.bottomleft = grid.tile("BL")
+grid.topright = grid.tile("TR")
+grid.bottomright = grid.tile("BR")
 
 function grid.pushwindow()
   local win = window.focusedwindow()

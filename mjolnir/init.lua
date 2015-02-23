@@ -3,6 +3,7 @@ local hotkey = require "mjolnir.hotkey"
 local window = require "mjolnir.window"
 local fnutils = require "mjolnir.fnutils"
 local grid = require "grid"
+local hints = require "mjolnir.th.hints"
 
 local mash = {"cmd", "alt", "ctrl"}
 
@@ -41,3 +42,5 @@ hotkey.bind(mash, 'PAD7', grid.topleft)
 hotkey.bind(mash, 'PAD1', grid.bottomleft)
 hotkey.bind(mash, 'PAD9', grid.topright)
 hotkey.bind(mash, 'PAD3', grid.bottomright)
+
+hotkey.bind(mash, "/", hints.windowHints)
