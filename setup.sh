@@ -53,11 +53,8 @@ function setup_vim() {
 }
 
 function setup_hydra() {
-    # So how about them window managers
-    ln -fs ~/.dotfiles/hydra ~/.hydra
-    # haha didn't the developer change it to mjolnir after like 2 weeks?
-    # and LITERALLY CHANGED EVERYTHING?
-    # I should get around to setting up that probably
+    rm -rf ~/.mjolnir
+    ln -fs ~/.dotfiles/mjolnir ~/.mjolnir
 }
 
 function main() {
