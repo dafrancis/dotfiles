@@ -1,0 +1,24 @@
+alias vip="$HOME/.dotfiles/vip/vip.sh"
+alias dot="$HOME/.dotfiles/dot/dot.sh"
+alias v="$HOME/.dotfiles/bash_scripts/find_vcs.sh"
+
+# Special SSH alias which changes the Terminal profile,
+# so that terminals on production servers can be
+# automatically coloured.
+alias ssh="$HOME/.dotfiles/bash_scripts/safe_colour_ssh $1"
+
+alias serve="python -m SimpleHTTPServer"
+alias json="python -mjson.tool"
+alias tmux="TERM=screen-256color-bce tmux"
+alias s=subl
+alias up="svn up"
+alias sdiff="svn diff --diff-cmd=$HOME/.dotfiles/bash_scripts/diffwrap.sh"
+alias fancylog="$HOME/.dotfiles/bash_scripts/fancylog.sh"
+alias svnall="$HOME/.dotfiles/bash_scripts/svnall"
+alias disk_space="df -kh"
+alias space_lookup="du -ksh *"
+alias stu="svn st | awk '/^\?/ { print \$2  }'"
+alias rmedited="svn st | awk '/^\?.*\.edited/ { print \$2  }' | xargs rm -rf"
+alias grest="svn st | awk '{ print \$2  }' | xargs grep -s"
+alias search_hosts="grep -v -E '^(\s*|#.*)$' /etc/hosts | awk '{ print \$2  }' | grep"
+alias ssh-ft="ssh -i $HOME/.ssh/df_ft_rsa -l dafydd.francis"

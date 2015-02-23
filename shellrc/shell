@@ -1,0 +1,5 @@
+export SHELLRC=$HOME/.dotfiles/shellrc
+
+source $SHELLRC/aliases
+source $SHELLRC/exports
+source $SHELLRC/functions

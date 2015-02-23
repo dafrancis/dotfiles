@@ -1,0 +1,4 @@
+export VIM=$HOME/vimscript/runtime/
+export EDITOR='vim'
+export SVN_EDITOR=vim
+
