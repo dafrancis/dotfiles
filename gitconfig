@@ -1,6 +1,13 @@
 [user]
 	name = Dafydd Francis
-	email = DaveOrdref@gmail.com
+	email = dafydd.francis@andwhathave.eu
+[color]
+	diff = auto
+	status = auto
+	branch = auto
 [alias]
-	st = status
-	co = checkout
+    co = checkout
+    st = status
+    praise = blame
+    up = pull
+
