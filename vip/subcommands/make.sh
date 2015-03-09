@@ -1,3 +1,5 @@
+set -e
+
 function  make_plugin() {
     plugin=$1
     mkdir -p "$plugin/plugin"
