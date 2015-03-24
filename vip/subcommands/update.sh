@@ -2,18 +2,20 @@
 
 bundle=$1
 
+BUNDLE_PATH="$HOME/.dotfiles/vim/bundle/"
+
 function update_bundle() {
     bundle=$1
     echo
     echo "Updating $bundle..."
     git submodule update "$HOME/.vim/bundle/$bundle"
-    git commit "$HOME/.vim/bundle/" -am "Updating vim submodule"
+    git commit $BUNDLE_PATH -am "Updating vim submodule"
 }
 
 
 function update_all_bundles() {
     git submodule foreach git pull origin master
-    git commit "$HOME/.vim/bundle/" -m "Updating vim submodules"
+    git commit $BUNDLE_PATH -m "Updating vim submodules"
 }
 
 function main() {
