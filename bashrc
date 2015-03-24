@@ -11,4 +11,4 @@ function reload() {
     clear
 }
 
-export PS1='\n[\u@\h \w]\n\[\e[32m\]$ \[\e[0m\]'
+export PS1='\n[\u@\h \w]\n\[\e[32m\]\$ \[\e[0m\]'
