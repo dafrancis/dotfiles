@@ -32,3 +32,8 @@ function cp_p() {
          }
          END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
 }
+
+function locate_dir() {
+    directory="$1"
+    locate "$directory" | sed "s/$directory.*/$directory/g" | uniq
+}
