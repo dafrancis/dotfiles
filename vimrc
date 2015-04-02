@@ -47,3 +47,5 @@ let g:vim_markdown_folding_disabled=1
 
 map <c-up> [e
 map <c-down> ]e
+
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14

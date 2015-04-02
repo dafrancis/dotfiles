@@ -8,6 +8,10 @@ function grid.tile(pos)
     local win = window.focusedwindow()
     local f = win:screen():frame()
 
+    if not win then
+      return
+    end
+
     if string.match(pos, "L") or string.match(pos, "R") then
       f.w = f.w / 2
       if string.match(pos, "R") then
