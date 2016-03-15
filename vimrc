@@ -7,7 +7,6 @@ endif
 call pathogen#infect()
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='powerlineish'
 
 set pastetoggle=<F2>
 if $TMUX == ''

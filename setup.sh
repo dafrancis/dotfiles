@@ -8,21 +8,24 @@ function is_mac() {
 
 function setup_zsh() {
     # Setup zsh as default shell
-    #chsh -s /bin/zsh
+    # TODO: fix this so it doesn't fail when using babun
+    # chsh -s /bin/zsh
     # This should probably go to the backup plan if it fails
     # (the backup plan is use bash)
 
     # Install Oh My Zsh
-    #curl -L http://install.ohmyz.sh | sh
+    ls ~/.oh-my-zsh || curl -L http://install.ohmyz.sh | sh
 
     # Link zshrc
     ln -fs ~/.dotfiles/zshrc ~/.zshrc
+    source ~/.zshrc
 }
 
 function setup_bash() {
     echo "-- (Bash Mode currently in todo mode)"
     rm -rf ~/.bashrc # Delete any default bashrc
     ln -fs ~/.dotfiles/bashrc ~/.bashrc
+    source ~/.bashrc
 
     # Hey it's not as fleshed out as zshrc but it's something I guess
 }
@@ -65,6 +68,7 @@ function main() {
     else
         echo "-- You're probably using linux or bsd or something else so I'm not going to do anything"
     fi
+    sh ~/.dotfiles/dot/subcommands/update.sh
 }
 
 main
