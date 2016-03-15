@@ -1,4 +1,3 @@
-A
 #!/bin/bash
 
 set -e
@@ -9,12 +8,12 @@ function is_mac() {
 
 function setup_zsh() {
     # Setup zsh as default shell
-    chsh -s /bin/zsh
+    #chsh -s /bin/zsh
     # This should probably go to the backup plan if it fails
     # (the backup plan is use bash)
 
     # Install Oh My Zsh
-    curl -L http://install.ohmyz.sh | sh
+    #curl -L http://install.ohmyz.sh | sh
 
     # Link zshrc
     ln -fs ~/.dotfiles/zshrc ~/.zshrc
